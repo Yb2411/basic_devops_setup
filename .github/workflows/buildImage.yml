@@ -1,4 +1,4 @@
-name: 'Build and Push Website'
+name: 'Build / Push And Deploy Website'
 
 on:
   workflow_dispatch:
