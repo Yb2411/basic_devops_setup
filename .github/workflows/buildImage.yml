@@ -27,10 +27,10 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag zumo_website:${{ github.sha }} public.ecr.aws/m8i4p9b9/zumo_website:${{ github.sha }}
-          docker tag zumo_website:${{ github.sha }} public.ecr.aws/m8i4p9b9/zumo_website:latest
+          docker tag zumo_website:${{ github.sha }} 117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}
+          docker tag zumo_website:${{ github.sha }} 117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:latest
 
       - name: Push Docker image to Amazon ECR
         run: |
-          docker push public.ecr.aws/m8i4p9b9/zumo_website:${{ github.sha }}
-          docker push public.ecr.aws/m8i4p9b9/zumo_website:latest
+          docker push 117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}
+          docker push 117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:latest
