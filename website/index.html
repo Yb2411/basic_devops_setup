@@ -61,7 +61,7 @@
             .then(response => response.json())
             .then(data => {
                 const candidateName = data.candidate_name;
-                const dynamicValue = data.container_id;
+                const dynamicValue = data.dynamic_value;
 
                 document.getElementById('candidate-name').textContent = candidateName;
                 document.getElementById('dynamic-value').textContent = dynamicValue;
