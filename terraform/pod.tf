@@ -8,7 +8,7 @@ resource "kubernetes_pod" "webserver" {
 
   spec {
     container {
-      image = "nginxdemos/hello"
+      image = "117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:latest"
       name  = "zumo-webserver"
       
       port {
