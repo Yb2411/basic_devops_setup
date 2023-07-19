@@ -23,14 +23,14 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build Docker image
-        run: docker build . -t zumo-website:${{ github.sha }}
+        run: docker build . -t zumo_website:${{ github.sha }}
 
       - name: Tag Docker image
         run: |
-          docker tag zumo-website:${{ github.sha }} ${{ steps.login-ecr.outputs.registry }}/zumo-website:${{ github.sha }}
-          docker tag zumo-website:${{ github.sha }} ${{ steps.login-ecr.outputs.registry }}/zumo-website:latest
+          docker tag zumo_website:${{ github.sha }} public.ecr.aws/m8i4p9b9/zumo_website:${{ github.sha }}
+          docker tag zumo_website:${{ github.sha }} public.ecr.aws/m8i4p9b9/zumo_website:latest
 
       - name: Push Docker image to Amazon ECR
         run: |
-          docker push ${{ steps.login-ecr.outputs.registry }}/zumo-website:${{ github.sha }}
-          docker push ${{ steps.login-ecr.outputs.registry }}/zumo-website:latest
+          docker push public.ecr.aws/m8i4p9b9/zumo_website:${{ github.sha }}
+          docker push public.ecr.aws/m8i4p9b9/zumo_website:latest
