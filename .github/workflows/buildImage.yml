@@ -46,7 +46,7 @@ jobs:
           set -x
           echo "${{ secrets.KUBERNETES_CA_CERT }}" | base64 --decode > ca.crt
           kubectl config set-cluster cluster_kube_zumo --server=${{ secrets.KUBERNETES_SERVER }} --certificate-authority=ca.crt
-          kubectl config set-credentials github-action --token=${{ secrets.KUBERNETES_TOKEN }}
-          kubectl config set-context default --cluster=cluster_kube_zumo --user=github-action
+          kubectl config set-credentials github-sa --token=${{ secrets.KUBERNETES_TOKEN }}
+          kubectl config set-context default --cluster=cluster_kube_zumo --user=github-sa
           kubectl config use-context default
           kubectl set image deployment/webserver-deployment zumo-webserver="117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}"
