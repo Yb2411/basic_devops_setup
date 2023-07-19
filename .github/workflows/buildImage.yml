@@ -23,7 +23,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build Docker image
-        run: docker build . -t zumo_website:${{ github.sha }} --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }}
+        run: docker build . -t zumo_website:${{ github.sha }} --build-arg BACKEND_URL=${{ vars.BACKEND_URL }}
 
       - name: Tag Docker image
         run: |
