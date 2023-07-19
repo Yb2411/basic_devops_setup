@@ -22,8 +22,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Replace backend URL
+        run: sed -i "s|__BACKEND_URL__|${{ vars.BACKEND_URL }}|g" ./website/index.html
+
       - name: Build Docker image
-        run: docker build . -t zumo_website:${{ github.sha }} --build-arg BACKEND_URL=${{ vars.BACKEND_URL }}
+        run: docker build . -t zumo_website:${{ github.sha }}
 
       - name: Tag Docker image
         run: |

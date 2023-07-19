@@ -7,9 +7,9 @@
             height: 100vh;
             width: 100%;
             top: 0;
-            z-index: -1; 
+            z-index: -1;
             background-image: url("background.png"), linear-gradient(255.16deg, #08001C 5.73%, #1A104D 96.3%);
-            background-repeat: no-repeat;   
+            background-repeat: no-repeat;
             background-position: 50% 0;
               background-position-x: 50%;
               background-position-y: 0px;
@@ -55,12 +55,13 @@
 
     </style>
     <script>
-        const backendUrl = process.env.BACKEND_URL;
+        const backendUrl = "__BACKEND_URL__";
+        console.log(backendUrl)
         fetch(backendUrl)
             .then(response => response.json())
             .then(data => {
-                const candidateName = data.candidateName;
-                const dynamicValue = data.dynamicValue;
+                const candidateName = data.candidate_name;
+                const dynamicValue = data.container_id;
 
                 document.getElementById('candidate-name').textContent = candidateName;
                 document.getElementById('dynamic-value').textContent = dynamicValue;
@@ -68,6 +69,7 @@
             .catch(error => {
                 console.error('Error fetching backend data :', error);
             });
+
     </script>
 
 </head>
@@ -77,11 +79,11 @@
         <div class="hello-world">
             <h1>Hello Zumo!</h1>
             <div class="separator"></div>
-            <p>This is &lt;<em id="candidate-name"></em>&gt; tech assignment</p>
+            <p>This is <em id="candidate-name"></em> tech assignment</p>
         </div>
     </div>
     <h2>
-        <p>Dynamic value: &lt;<em id="dynamic-value"></em>&gt; </p>
-    </h2>    
+        <p>Dynamic value: <em id="dynamic-value"></em> </p>
+    </h2>
 </body>
 </html>
