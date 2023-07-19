@@ -1,7 +1,9 @@
 name: 'Build / Push And Deploy Website'
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -40,8 +42,10 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl config set-cluster cluster_kube_zumo --server=${{ secrets.KUBERNETES_SERVER }} --certificate-authority=${{ secrets.KUBERNETES_CA_CERT }}
+          set -x
+          echo "${{ secrets.KUBERNETES_CA_CERT }}" | base64 --decode > ca.crt
+          kubectl config set-cluster cluster_kube_zumo --server=${{ secrets.KUBERNETES_SERVER }} --certificate-authority=ca.crt
           kubectl config set-credentials github-action --token=${{ secrets.KUBERNETES_TOKEN }}
           kubectl config set-context default --cluster=cluster_kube_zumo --user=github-action
           kubectl config use-context default
-          kubectl set image deployment/webserver-deployment zumo-webserver=117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}
+          kubectl set image deployment/webserver-deployment zumo-webserver="117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}""
