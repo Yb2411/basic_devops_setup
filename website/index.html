@@ -54,6 +54,22 @@
         }
 
     </style>
+    <script>
+        const backendUrl = process.env.BACKEND_URL;
+        fetch(backendUrl)
+            .then(response => response.json())
+            .then(data => {
+                const candidateName = data.candidateName;
+                const dynamicValue = data.dynamicValue;
+
+                document.getElementById('candidate-name').textContent = candidateName;
+                document.getElementById('dynamic-value').textContent = dynamicValue;
+            })
+            .catch(error => {
+                console.error('Error fetching backend data :', error);
+            });
+    </script>
+
 </head>
 <body>
     <div class="container">
@@ -61,11 +77,11 @@
         <div class="hello-world">
             <h1>Hello Zumo!</h1>
             <div class="separator"></div>
-            <p>This is &lt;<em>candidate's name</em>&gt; tech assignment</p>
+            <p>This is &lt;<em id="candidate-name"></em>&gt; tech assignment</p>
         </div>
     </div>
     <h2>
-        <p>Dynamic value: &lt;<em>value</em>&gt; </p>
+        <p>Dynamic value: &lt;<em id="dynamic-value"></em>&gt; </p>
     </h2>    
 </body>
 </html>
