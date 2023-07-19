@@ -37,3 +37,11 @@ jobs:
         run: |
           docker push 117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}
           docker push 117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:latest
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl config set-cluster cluster_kube_zumo --server=${{ secrets.KUBERNETES_SERVER }} --certificate-authority=${{ secrets.KUBERNETES_CA_CERT }}
+          kubectl config set-credentials github-action --token=${{ secrets.KUBERNETES_TOKEN }}
+          kubectl config set-context default --cluster=cluster_kube_zumo --user=github-action
+          kubectl config use-context default
+          kubectl set image deployment/webserver-deployment zumo-webserver=117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:${{ github.sha }}
