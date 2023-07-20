@@ -1,22 +1,19 @@
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr_block
 }
 
 resource "aws_subnet" "first_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.first_subnet_cidr_block
   availability_zone = "eu-west-1a"
   map_public_ip_on_launch = true
-
-
 }
 
 resource "aws_subnet" "second_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = "10.0.2.0/24"
+  cidr_block = var.second_subnet_cidr_block
   availability_zone = "eu-west-1b"
   map_public_ip_on_launch = true
-
 }
 
 resource "aws_internet_gateway" "gw" {

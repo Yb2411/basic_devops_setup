@@ -1,35 +1,29 @@
 resource "kubernetes_deployment" "webserver_deployment" {
   metadata {
     name = "webserver-deployment"
-    labels = {
-      app = "webserver"
-    }
+    labels = var.selector
   }
 
   spec {
-    replicas = 2
+    replicas = var.replicas
     selector {
-      match_labels = {
-        app = "webserver"
-      }
+      match_labels = var.selector
     }
     template {
       metadata {
-        labels = {
-          app = "webserver"
-        }
+        labels = var.selector
       }
       spec {
         container {
-          image = "117698939310.dkr.ecr.eu-west-1.amazonaws.com/zumo_website:latest"
-          name  = "zumo-webserver"
+          image = var.container_image
+          name  = var.container_name
 
           port {
-            container_port = 80
+            container_port = var.container_port
           }
         }
         image_pull_secrets {
-          name = "ecr-credentials"
+          name = var.image_pull_secret_name
         }
       }
     }
@@ -41,13 +35,11 @@ resource "kubernetes_service" "webserver_service" {
     name = "webserver-service"
   }
   spec {
-    selector = {
-      app = "webserver"
-    }
+    selector = var.selector
     type = "LoadBalancer"
     port {
-      port        = 80
-      target_port = 80
+      port        = var.container_port
+      target_port = var.container_port
     }
   }
 }
