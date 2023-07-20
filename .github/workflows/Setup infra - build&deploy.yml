@@ -71,7 +71,7 @@ jobs:
         run: terraform -chdir=terraform apply -auto-approve
 
   deploy:
-    needs: terraform
+    needs: [build, terraform]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Kubernetes
