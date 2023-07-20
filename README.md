@@ -51,9 +51,9 @@ The choice of technologies in this setup is driven by the need for automation an
 
 This setup serves as a fundamental introduction to DevOps tasks, but there is significant scope for improvement:
 
-- Backend / Frontend / Terraform Split: Ideally, these components should be divided into three separate repositories for better tracking of changes.
-- Pre-Prod / Dev Environment: Currently, we have only one branch in this repository. It would be beneficial to have one or two additional branches per environment, with each environment using specific variables.
-- Secret Management: While we are currently using GitHub Actions, alternatives such as HashiCorp Vault or AWS Secrets Manager could be used to get better tracking of secret changes (and to dynamically store the backend URL for example).
-- Resiliency: To increase reliability, we could have multiple instances of the website, each in a different availability zone.
-- Monitoring: In a production environment, a more sophisticated monitoring tool than CloudWatch would be preferable. Options include the ELK Stack or Prometheus, along with other alerting tools like Heartbeat, Elastalerts, and various dashboarding solutions.
-- CDN Integration: We could integrate a CDN like CloudFront to make the web server available in various locations with minimal latency.
+- **Backend / Frontend / Terraform Split:** Ideally, these components should be divided into three separate repositories for better tracking of changes.
+- **Pre-Prod / Dev Environment:** Currently, we have only one branch in this repository. It would be beneficial to have one or two additional branches per environment, with each environment using specific variables.
+- **Secret Management:** While we are currently using GitHub Actions, alternatives such as HashiCorp Vault or AWS Secrets Manager could be used to get better tracking of secret changes (and to dynamically store the backend URL for example).
+- **Resiliency:** To increase reliability, we could have multiple instances of the website, each in a different availability zone.
+- **Monitoring:** In a production environment, a more sophisticated monitoring tool than CloudWatch would be preferable. Options include the ELK Stack or Prometheus, along with other alerting tools like Heartbeat, Elastalerts, and various dashboarding solutions.
+- **CDN Integration:** We could integrate a CDN like CloudFront to make the web server available in various locations with minimal latency.
