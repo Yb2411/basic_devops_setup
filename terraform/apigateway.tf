@@ -1,8 +1,12 @@
 resource "aws_apigatewayv2_api" "zumo_http_api" {
   name          = "zumo-http-api"
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_headers = ["Content-Type"]
+    allow_methods = ["GET"]
+    allow_origins = ["*"]
+  }
 }
-
 resource "aws_lambda_permission" "apigw" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
@@ -31,6 +35,6 @@ resource "aws_apigatewayv2_route" "route" {
 
 resource "aws_apigatewayv2_stage" "stage" {
   api_id = aws_apigatewayv2_api.zumo_http_api.id
-  name   = "main-stage"
+  name   = "$default"
   auto_deploy = true
 }
