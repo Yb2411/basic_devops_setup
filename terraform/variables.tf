@@ -71,3 +71,34 @@ variable "image_pull_secret_name" {
   type        = string
   default     = "ecr-credentials"
 }
+
+variable "lambda_function_name" {
+  description = "The name of the Lambda function"
+  type        = string
+  default     = "zumo_fonction"
+}
+
+variable "lambda_handler" {
+  description = "The handler for the Lambda function"
+  type        = string
+  default     = "lambda_function.lambda_handler"
+}
+
+variable "lambda_runtime" {
+  description = "The runtime for the Lambda function"
+  type        = string
+  default     = "python3.8"
+}
+
+variable "lambda_zip_path" {
+  description = "The path to the ZIP file containing the Lambda function code"
+  type        = string
+  default     = "../backend/lambda_function_payload.zip"
+}
+
+variable "lambda_code_path" {
+  description = "The path to the ZIP file containing the Lambda function code"
+  type        = string
+  default     = "../backend/lambda_function.py"
+}
+
