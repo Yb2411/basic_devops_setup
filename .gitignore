@@ -1,9 +1,13 @@
+ecr-credentials.yaml
+backend/lambda_function_payload.zip
+
 # Local .terraform directories
 terraform/.terraform/*
 
 # .tfstate files
 terraform/*.tfstate
 terraform/*.tfstate.*
+terraform/.terraform.lock.hcl
 
 # Crash log files
 crash.log
