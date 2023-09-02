@@ -1,4 +1,4 @@
-# Baisc Devops Setup
+# Basic Devops Setup
 
 ## Infrastructure Overview
 This document provides an overview of the current infrastructure setup, which leverages cloud computing, containerization, and Infrastructure as Code (IaC). The setup is primarily based on AWS services, GitHub, and Terraform.
